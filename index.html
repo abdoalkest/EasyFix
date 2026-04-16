@@ -1,0 +1,1344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Easy Fix | Home Services Marketplace</title>
+  <meta name="description" content="Easy Fix connects homeowners with trusted technicians. Find, compare, and book plumbers, electricians, cleaners, and more." />
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #0b1220;
+      --muted: #54627a;
+      --border: rgba(15, 23, 42, .12);
+
+      --blue: #1e66ff;     /* trust */
+      --blue-2: #0b3fb8;
+      --green: #16a34a;    /* growth */
+      --green-2: #0f7a36;
+
+      --card: #f7f9ff;
+      --card2: #f4fff7;
+      --shadow: 0 14px 30px rgba(2, 8, 23, .10);
+
+      --radius: 16px;
+      --radius2: 22px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.55;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index: 50;
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 0;
+      gap: 12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:800;
+      letter-spacing:.2px;
+    }
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      display:grid; place-items:center;
+      background: radial-gradient(70% 70% at 30% 30%, #7aa7ff, var(--blue));
+      color:white; box-shadow: 0 10px 20px rgba(30,102,255,.25);
+      font-weight:900;
+    }
+    .brand small{display:block; font-weight:600; color:var(--muted); margin-top:-2px}
+
+    .links{
+      display:none;
+      gap: 16px;
+      align-items:center;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .links a{padding:8px 10px; border-radius:12px}
+    .links a:hover{background: rgba(30,102,255,.08); color: var(--text)}
+
+    .navActions{display:flex; align-items:center; gap:10px}
+
+    .btn{
+      border:1px solid var(--border);
+      background:#fff;
+      padding:10px 12px;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor:pointer;
+      transition: .15s ease;
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: 0 10px 18px rgba(2,8,23,.10)}
+    .btnPrimary{
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      color: #fff;
+      border-color: rgba(30,102,255,.25);
+    }
+    .btnGreen{
+      background: linear-gradient(135deg, var(--green), var(--green-2));
+      color: #fff;
+      border-color: rgba(22,163,74,.25);
+    }
+    .btnGhost{
+      background: rgba(30,102,255,.08);
+      border-color: rgba(30,102,255,.15);
+      color: var(--blue-2);
+    }
+
+    .hamburger{
+      width:44px; height:44px;
+      border-radius: 14px;
+      border:1px solid var(--border);
+      background:#fff;
+      cursor:pointer;
+      display:inline-grid;
+      place-items:center;
+    }
+    .hamburger span{
+      width:18px; height:2px; background: #1f2a44; display:block; position:relative;
+    }
+    .hamburger span::before,
+    .hamburger span::after{
+      content:""; position:absolute; left:0; width:18px; height:2px; background:#1f2a44;
+    }
+    .hamburger span::before{top:-6px}
+    .hamburger span::after{top:6px}
+
+    /* Mobile menu */
+    .mobileMenu{
+      display:none;
+      border-top: 1px solid var(--border);
+      padding: 10px 0 16px;
+    }
+    .mobileMenu a{
+      display:block;
+      padding: 10px 10px;
+      border-radius: 14px;
+      color: var(--muted);
+      font-weight: 650;
+    }
+    .mobileMenu a:hover{background: rgba(2,8,23,.04); color:var(--text)}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      padding: 34px 0 22px;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-200px -140px auto -140px;
+      height: 520px;
+      background:
+        radial-gradient(40% 40% at 30% 20%, rgba(30,102,255,.22), transparent 60%),
+        radial-gradient(35% 35% at 65% 30%, rgba(22,163,74,.18), transparent 60%),
+        radial-gradient(35% 35% at 45% 60%, rgba(30,102,255,.10), transparent 60%);
+      z-index:-1;
+    }
+    .heroGrid{
+      display:grid;
+      gap: 18px;
+      grid-template-columns: 1fr;
+      align-items: center;
+    }
+    .pill{
+      display:inline-flex;
+      gap: 10px; align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(30,102,255,.20);
+      background: rgba(30,102,255,.08);
+      color: var(--blue-2);
+      font-weight: 750;
+      font-size: 13px;
+      width: fit-content;
+    }
+    .pill .dot{width:8px; height:8px; border-radius:999px; background: var(--green)}
+    h1{
+      margin: 10px 0 10px;
+      font-size: clamp(28px, 4.8vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -.6px;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: clamp(15px, 2.2vw, 18px);
+      margin: 0 0 18px;
+      max-width: 60ch;
+    }
+    .heroActions{display:flex; flex-wrap:wrap; gap:10px; margin: 10px 0 16px}
+    .heroStats{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .stat{
+      padding: 12px 12px;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.7);
+    }
+    .stat strong{display:block; font-size: 16px}
+    .stat span{color: var(--muted); font-weight: 650; font-size: 13px}
+
+    .heroCard{
+      border-radius: var(--radius2);
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,.95));
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+    .mockHeader{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 10px 10px 12px;
+      border-bottom: 1px solid rgba(15,23,42,.08);
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(22,163,74,.10);
+      color: var(--green-2);
+      font-weight: 800;
+      font-size: 12px;
+      border:1px solid rgba(22,163,74,.18);
+    }
+    .mockBody{padding: 12px 10px 4px}
+    .searchRow{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+    .input{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-weight: 650;
+      color: var(--text);
+      outline: none;
+    }
+    .grid2{display:grid; grid-template-columns: 1fr; gap:10px}
+    .miniCard{
+      border:1px solid rgba(15,23,42,.10);
+      border-radius: 16px;
+      padding: 12px;
+      background: linear-gradient(180deg, var(--card), #fff);
+    }
+    .miniCard .top{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    }
+    .miniCard h4{margin:0; font-size: 14px}
+    .miniCard p{margin: 4px 0 0; color: var(--muted); font-size: 13px}
+    .stars{color:#ffb020; font-weight:900}
+    .price{font-weight: 900; color: var(--blue-2)}
+    .chipRow{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+    .chip{
+      font-size: 12px;
+      font-weight: 750;
+      color: var(--muted);
+      border:1px solid rgba(15,23,42,.10);
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #fff;
+    }
+    .chipGreen{
+      color: var(--green-2);
+      border-color: rgba(22,163,74,.20);
+      background: rgba(22,163,74,.08);
+    }
+
+    /* Section base */
+    section{padding: 28px 0}
+    .sectionHead{
+      display:flex; flex-direction:column; gap:8px;
+      margin-bottom: 16px;
+    }
+    .sectionHead h2{
+      margin:0;
+      font-size: clamp(20px, 3vw, 30px);
+      letter-spacing: -.3px;
+    }
+    .sectionHead p{margin:0; color: var(--muted); max-width: 75ch}
+
+    /* Benefit cards */
+    .cards{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .card{
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      padding: 14px;
+      background: #fff;
+      box-shadow: 0 10px 18px rgba(2,8,23,.06);
+    }
+    .cardIcon{
+      width:44px; height:44px; border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(30,102,255,.10);
+      border:1px solid rgba(30,102,255,.18);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    .card h3{margin:0 0 6px; font-size: 16px}
+    .card p{margin:0; color: var(--muted); font-size: 14px}
+
+    /* Services grid */
+    .services{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .service{
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      padding: 14px;
+      background: linear-gradient(180deg, var(--card2), #fff);
+    }
+    .serviceTop{
+      display:flex; align-items:center; gap:10px;
+      margin-bottom: 6px;
+    }
+    .serviceIcon{
+      width:42px; height:42px; border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(22,163,74,.10);
+      border:1px solid rgba(22,163,74,.18);
+      font-size: 18px;
+    }
+    .service h4{margin:0; font-size: 15px}
+    .service p{margin: 0; color: var(--muted); font-size: 14px}
+
+    /* How it works */
+    .steps{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .step{
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      padding: 14px;
+      background: #fff;
+    }
+    .stepNum{
+      width:34px; height:34px; border-radius: 12px;
+      display:grid; place-items:center;
+      background: rgba(30,102,255,.10);
+      border:1px solid rgba(30,102,255,.18);
+      font-weight: 900;
+      color: var(--blue-2);
+      margin-bottom: 8px;
+    }
+    .step h4{margin:0 0 4px}
+    .step p{margin:0; color: var(--muted); font-size: 14px}
+
+    /* Split layout sections */
+    .split{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .panel{
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      padding: 14px;
+      background: #fff;
+      box-shadow: 0 10px 18px rgba(2,8,23,.06);
+    }
+    .panel h3{margin:0 0 8px; font-size: 16px}
+    .panel p{margin:0 0 10px; color: var(--muted); font-size: 14px}
+    .list{
+      margin:0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 14px;
+    }
+    .list li{margin: 6px 0}
+    .form{
+      display:grid; gap:10px;
+      margin-top: 10px;
+    }
+    .row2{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+    .hint{
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 650;
+      margin-top: -4px;
+    }
+
+    /* Safety callout */
+    .callout{
+      border-radius: var(--radius2);
+      border:1px solid rgba(30,102,255,.22);
+      background: linear-gradient(135deg, rgba(30,102,255,.12), rgba(22,163,74,.10));
+      padding: 14px;
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    .calloutIcon{
+      width:44px; height:44px; border-radius: 14px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.7);
+      border:1px solid rgba(15,23,42,.12);
+      font-size: 18px;
+      flex: 0 0 auto;
+    }
+    .callout h3{margin:0 0 4px}
+    .callout p{margin:0; color: var(--muted); font-weight: 650}
+
+    /* Testimonials */
+    .testimonials{
+      display:grid; grid-template-columns: 1fr; gap: 12px;
+    }
+    .quote{
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      padding: 14px;
+      background: #fff;
+    }
+    .quote p{margin:0 0 10px; color: var(--text); font-weight: 700}
+    .quote .who{color: var(--muted); font-weight: 650; font-size: 13px}
+
+    /* FAQ */
+    details{
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      padding: 12px 14px;
+      background:#fff;
+    }
+    details summary{
+      cursor:pointer;
+      font-weight: 800;
+      color: var(--text);
+    }
+    details p{color: var(--muted); font-weight: 650; margin: 10px 0 0}
+
+    /* Footer */
+    footer{
+      border-top: 1px solid var(--border);
+      padding: 22px 0;
+      color: var(--muted);
+    }
+    .footerGrid{
+      display:grid; grid-template-columns: 1fr; gap: 14px;
+    }
+    .footerLinks{
+      display:flex; flex-wrap:wrap; gap:10px;
+      font-weight: 650;
+    }
+    .footerLinks a{padding:8px 10px; border-radius:12px}
+    .footerLinks a:hover{background: rgba(2,8,23,.04); color: var(--text)}
+
+    /* Modal */
+    .modalOverlay{
+      position:fixed; inset:0;
+      background: rgba(2,8,23,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 100;
+    }
+    .modal{
+      width: min(720px, 100%);
+      border-radius: 22px;
+      background:#fff;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 30px 80px rgba(2,8,23,.35);
+      overflow:hidden;
+    }
+    .modalTop{
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 14px 14px;
+      background: linear-gradient(135deg, rgba(30,102,255,.10), rgba(22,163,74,.08));
+      border-bottom: 1px solid rgba(15,23,42,.08);
+      gap: 12px;
+    }
+    .modalTop h3{margin:0; font-size: 16px}
+    .close{
+      width:42px; height:42px; border-radius: 14px;
+      border:1px solid rgba(15,23,42,.12);
+      background:#fff;
+      cursor:pointer;
+      font-weight: 900;
+    }
+    .modalBody{padding: 14px}
+    .result{
+      margin-top: 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(22,163,74,.22);
+      background: rgba(22,163,74,.08);
+      padding: 12px;
+      display:none;
+    }
+    .result strong{display:block}
+    .result span{color: var(--muted); font-weight: 650}
+
+    /* Responsive */
+    @media (min-width: 820px){
+      .links{display:flex}
+      .hamburger{display:none}
+      .mobileMenu{display:none !important}
+
+      .hero{padding: 46px 0 26px}
+      .heroGrid{grid-template-columns: 1.1fr .9fr; gap: 18px}
+
+      .grid2{grid-template-columns: 1fr 1fr}
+      .heroStats{grid-template-columns: repeat(4, minmax(0, 1fr))}
+      .cards{grid-template-columns: repeat(4, minmax(0, 1fr))}
+      .services{grid-template-columns: repeat(5, minmax(0, 1fr))}
+      .steps{grid-template-columns: repeat(4, minmax(0, 1fr))}
+      .split{grid-template-columns: 1fr 1fr}
+      .row2{grid-template-columns: 1fr 1fr}
+      .testimonials{grid-template-columns: repeat(3, minmax(0, 1fr))}
+      .footerGrid{grid-template-columns: 1.2fr .8fr}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#home" aria-label="Easy Fix Home">
+          <div class="logo">EF</div>
+          <div>
+            Easy Fix
+            <small>Trusted home services marketplace</small>
+          </div>
+        </a>
+
+        <nav class="links" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#how">How it works</a>
+          <a href="#safety">Safety</a>
+          <a href="#technicians">For Technicians</a>
+          <a href="#companies">For Companies</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="navActions">
+          <button class="btn btnGhost" id="openBookingTop" type="button">Interactive booking demo</button>
+          <button class="hamburger" id="hamburger" type="button" aria-label="Open menu">
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobileMenu" id="mobileMenu" aria-label="Mobile navigation">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#how">How it works</a>
+        <a href="#safety">Safety</a>
+        <a href="#technicians">For Technicians</a>
+        <a href="#companies">For Companies</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero" id="home">
+    <div class="container">
+      <div class="heroGrid">
+        <div>
+          <div class="pill"><span class="dot"></span> Fast, safe, and transparent home services</div>
+          <h1>Fix your home <span style="color:var(--blue)">بسهولة</span> <br/> anytime, anywhere</h1>
+          <p class="lead">
+            Easy Fix is a mobile and web platform that connects homeowners with verified technicians
+            (plumbing, electrical, carpentry, cleaning, and maintenance). Compare ratings, pricing, and experience,
+            then book instantly with confidence.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn btnPrimary" href="#services">Find a Technician</a>
+            <a class="btn btnGreen" href="#technicians">Join as a Technician</a>
+            <button class="btn" id="openBookingHero" type="button">Try booking demo</button>
+          </div>
+
+          <div class="heroStats" aria-label="Key benefits">
+            <div class="stat"><strong>Trusted</strong><span>Verified pros + reviews</span></div>
+            <div class="stat"><strong>Transparent</strong><span>Clear pricing</span></div>
+            <div class="stat"><strong>Fast</strong><span>Book in minutes</span></div>
+            <div class="stat"><strong>Women-for-women</strong><span>Optional safe matching</span></div>
+          </div>
+        </div>
+
+        <div class="heroCard" aria-label="Marketplace preview">
+          <div class="mockHeader">
+            <div style="font-weight:900">Find a technician</div>
+            <div class="badge">Secure & trusted</div>
+          </div>
+
+          <div class="mockBody">
+            <div class="searchRow">
+              <input class="input" id="quickSearch" placeholder="Search (e.g., plumber, electrician, cleaning)" />
+              <select class="input" id="quickCity" style="max-width:220px">
+                <option value="Cairo">Cairo</option>
+                <option value="Giza">Giza</option>
+                <option value="Alexandria">Alexandria</option>
+                <option value="Online">Online</option>
+              </select>
+            </div>
+
+            <div class="grid2">
+              <div class="miniCard">
+                <div class="top">
+                  <div>
+                    <h4>Ahmed Hassan</h4>
+                    <p>Plumbing • 7+ years experience</p>
+                  </div>
+                  <div style="text-align:right">
+                    <div class="stars">★ 4.9</div>
+                    <div class="price">from 250 EGP</div>
+                  </div>
+                </div>
+                <div class="chipRow">
+                  <span class="chip">Verified</span>
+                  <span class="chip">Same-day</span>
+                  <span class="chip chipGreen">Clear price list</span>
+                </div>
+              </div>
+
+              <div class="miniCard">
+                <div class="top">
+                  <div>
+                    <h4>Sara Mahmoud</h4>
+                    <p>Electrical • Safety-first</p>
+                  </div>
+                  <div style="text-align:right">
+                    <div class="stars">★ 4.8</div>
+                    <div class="price">from 300 EGP</div>
+                  </div>
+                </div>
+                <div class="chipRow">
+                  <span class="chip">Verified</span>
+                  <span class="chip chipGreen">Women-for-women option</span>
+                  <span class="chip">Top rated</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="hint" style="margin-top:10px">
+              Tip: In the full app, users compare providers by ratings, reviews, experience, and pricing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Benefits -->
+  <section>
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Why people choose Easy Fix</h2>
+        <p>
+          A friendly, professional service marketplace built to save you time, reduce stress, and increase trust.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="cardIcon">⚡</div>
+          <h3>Fast booking</h3>
+          <p>Search categories, compare technicians, then book in minutes.</p>
+        </div>
+
+        <div class="card">
+          <div class="cardIcon">🛡️</div>
+          <h3>Verified professionals</h3>
+          <p>Profiles include experience, identity checks, and service history (where supported).</p>
+        </div>
+
+        <div class="card">
+          <div class="cardIcon">⭐</div>
+          <h3>Real ratings & reviews</h3>
+          <p>Make decisions based on quality and previous customer feedback.</p>
+        </div>
+
+        <div class="card">
+          <div class="cardIcon">💬</div>
+          <h3>Clear communication</h3>
+          <p>Know what you are paying for, and what is included, before confirming.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>About Easy Fix</h2>
+        <p>
+          Easy Fix simplifies home services by connecting customers with trusted professionals, and
+          creating real job opportunities for technicians and companies.
+        </p>
+      </div>
+
+      <div class="split">
+        <div class="panel">
+          <h3>Vision</h3>
+          <p>Simplify home services for everyone, with speed, safety, and transparency.</p>
+          <h3 style="margin-top:14px">Mission</h3>
+          <p>Connect people with skilled, verified technicians and service providers they can trust.</p>
+        </div>
+
+        <div class="panel">
+          <h3>Social impact</h3>
+          <ul class="list">
+            <li>Create job opportunities for technicians and freelancers</li>
+            <li>Support small businesses and maintenance companies</li>
+            <li>Empower customers with a safer, more comfortable experience</li>
+          </ul>
+          <div style="margin-top:12px" class="callout">
+            <div class="calloutIcon">🤝</div>
+            <div>
+              <h3>Women-for-women option</h3>
+              <p>
+                Female customers can choose female technicians for added comfort and safety (where available).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Services</h2>
+        <p>Choose a category, then compare technicians by ratings, experience, and transparent pricing.</p>
+      </div>
+
+      <div class="services" aria-label="Service categories">
+        <div class="service">
+          <div class="serviceTop">
+            <div class="serviceIcon">🚰</div>
+            <h4>Plumbing</h4>
+          </div>
+          <p>Leaks, installs, repairs, and emergencies.</p>
+        </div>
+
+        <div class="service">
+          <div class="serviceTop">
+            <div class="serviceIcon">💡</div>
+            <h4>Electrical</h4>
+          </div>
+          <p>Fixes, rewiring, appliances, safety checks.</p>
+        </div>
+
+        <div class="service">
+          <div class="serviceTop">
+            <div class="serviceIcon">🪚</div>
+            <h4>Carpentry</h4>
+          </div>
+          <p>Furniture repair, doors, custom work.</p>
+        </div>
+
+        <div class="service">
+          <div class="serviceTop">
+            <div class="serviceIcon">🧼</div>
+            <h4>Cleaning</h4>
+          </div>
+          <p>Home, deep cleaning, move-in, move-out.</p>
+        </div>
+
+        <div class="service">
+          <div class="serviceTop">
+            <div class="serviceIcon">🧰</div>
+            <h4>Maintenance</h4>
+          </div>
+          <p>General repairs and ongoing support.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:14px" class="panel">
+        <h3>Key platform features</h3>
+        <ul class="list">
+          <li>User registration and profiles</li>
+          <li>Search and filters by category and location</li>
+          <li>Technician profiles with ratings, reviews, experience, and price list</li>
+          <li>Booking system with service details and preferred time</li>
+          <li>Transparent pricing and clear service scope</li>
+          <li>Business accounts for companies</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>How it works</h2>
+        <p>A simple flow designed to help you book confidently.</p>
+      </div>
+
+      <div class="steps" aria-label="How it works steps">
+        <div class="step">
+          <div class="stepNum">1</div>
+          <h4>Sign up</h4>
+          <p>Create your profile in seconds.</p>
+        </div>
+        <div class="step">
+          <div class="stepNum">2</div>
+          <h4>Choose a service</h4>
+          <p>Select category and add your details.</p>
+        </div>
+        <div class="step">
+          <div class="stepNum">3</div>
+          <h4>Compare technicians</h4>
+          <p>Check ratings, reviews, and pricing.</p>
+        </div>
+        <div class="step">
+          <div class="stepNum">4</div>
+          <h4>Book instantly</h4>
+          <p>Confirm your booking and get support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Safety & Privacy -->
+  <section id="safety">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Safety & privacy</h2>
+        <p>Trust is the foundation of Easy Fix, for customers, technicians, and companies.</p>
+      </div>
+
+      <div class="split">
+        <div class="panel">
+          <h3>Trusted environment</h3>
+          <ul class="list">
+            <li>Verified technicians (where supported)</li>
+            <li>Ratings and review system to ensure quality</li>
+            <li>Clear pricing and service scope</li>
+            <li>Support channels for issue reporting</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Women-for-women option</h3>
+          <p>
+            Female customers can request female technicians for added comfort and safety.
+            This option is visible during booking and on technician profiles (where available).
+          </p>
+
+          <div class="callout" style="margin-top:12px">
+            <div class="calloutIcon">🔒</div>
+            <div>
+              <h3>Privacy-first approach</h3>
+              <p>
+                Personal details are shared only when needed to complete a booking. Users control what they show publicly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- For Technicians -->
+  <section id="technicians">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>For technicians</h2>
+        <p>Join Easy Fix to get more jobs, build your reputation, and grow your income.</p>
+      </div>
+
+      <div class="split">
+        <div class="panel">
+          <h3>Benefits of joining</h3>
+          <ul class="list">
+            <li>More clients through search and recommendations</li>
+            <li>Professional profile with ratings and reviews</li>
+            <li>Clear job requests and transparent payments (depending on your model)</li>
+            <li>Flexible schedule and consistent opportunities</li>
+          </ul>
+          <div style="margin-top:12px">
+            <span class="badge">Start earning today</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Technician registration form</h3>
+          <p class="hint">This is a demo form. Connect it to your backend later.</p>
+
+          <form class="form" id="techForm">
+            <div class="row2">
+              <input class="input" name="name" placeholder="Full name" required />
+              <input class="input" name="phone" placeholder="Phone number" required />
+            </div>
+            <div class="row2">
+              <select class="input" name="category" required>
+                <option value="">Select category</option>
+                <option>Plumbing</option>
+                <option>Electrical</option>
+                <option>Carpentry</option>
+                <option>Cleaning</option>
+                <option>Maintenance</option>
+              </select>
+              <select class="input" name="city" required>
+                <option value="">Select city</option>
+                <option>Cairo</option>
+                <option>Giza</option>
+                <option>Alexandria</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <label class="hint">
+              <input type="checkbox" name="womenOption" />
+              Available for women-for-women requests (if you are a female technician)
+            </label>
+            <button class="btn btnGreen" type="submit">Submit application</button>
+            <div class="hint" id="techFormMsg" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- For Companies -->
+  <section id="companies">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>For companies</h2>
+        <p>Partner with Easy Fix to promote your services and reach more clients.</p>
+      </div>
+
+      <div class="split">
+        <div class="panel">
+          <h3>Why partner with Easy Fix</h3>
+          <ul class="list">
+            <li>Business accounts to showcase teams and specialties</li>
+            <li>Lead generation and ongoing client requests</li>
+            <li>Partnership opportunities and service packages</li>
+            <li>Stronger trust through verified profiles and reviews</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Company inquiry form</h3>
+          <p class="hint">This is a demo form. Replace placeholders with real contact info.</p>
+
+          <form class="form" id="companyForm">
+            <input class="input" name="company" placeholder="Company name" required />
+            <div class="row2">
+              <input class="input" name="email" placeholder="Business email" required />
+              <input class="input" name="phone" placeholder="Phone number" required />
+            </div>
+            <textarea class="input" name="message" rows="4" placeholder="Tell us about your services and coverage area..." required></textarea>
+            <button class="btn btnPrimary" type="submit">Request partnership</button>
+            <div class="hint" id="companyFormMsg" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Download -->
+  <section id="download">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Get the app</h2>
+        <p>Book faster and manage requests on the go.</p>
+      </div>
+
+      <div class="split">
+        <div class="panel">
+          <h3>iOS & Android</h3>
+          <p>Add your real app store links later.</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px">
+            <a class="btn" href="#" onclick="return false;">Download on iOS (placeholder)</a>
+            <a class="btn" href="#" onclick="return false;">Get it on Android (placeholder)</a>
+          </div>
+          <p class="hint" style="margin-top:10px">
+            Optional: Add QR codes when you have store URLs.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3>What you can do in the app</h3>
+          <ul class="list">
+            <li>Save favorite technicians</li>
+            <li>Track booking status</li>
+            <li>Chat and share photos (if supported)</li>
+            <li>Leave reviews and ratings after service</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Testimonials</h2>
+        <p>Example reviews to show how trust is built on the platform.</p>
+      </div>
+
+      <div class="testimonials" aria-label="Testimonials">
+        <div class="quote">
+          <p>“I found a plumber in minutes and the pricing was clear from the start.”</p>
+          <div class="who">Nour, homeowner</div>
+        </div>
+        <div class="quote">
+          <p>“The women-for-women option made me feel comfortable booking a service.”</p>
+          <div class="who">Mariam, customer</div>
+        </div>
+        <div class="quote">
+          <p>“As a technician, I get steady job requests and my reviews help me grow.”</p>
+          <div class="who">Omar, technician</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>FAQ</h2>
+        <p>Common questions from customers, technicians, and companies.</p>
+      </div>
+
+      <div style="display:grid; gap:10px">
+        <details>
+          <summary>How do I choose the right technician?</summary>
+          <p>Compare ratings, reviews, experience, and pricing. You can also filter by category and location.</p>
+        </details>
+
+        <details>
+          <summary>Is pricing fixed?</summary>
+          <p>Easy Fix aims for transparent pricing. Providers can display price lists, and booking requests can include service details for accurate estimates.</p>
+        </details>
+
+        <details>
+          <summary>How does the women-for-women option work?</summary>
+          <p>During booking, female customers can request female technicians (where available). This option is shown clearly to support comfort and safety.</p>
+        </details>
+
+        <details>
+          <summary>How can technicians get more jobs?</summary>
+          <p>Complete your profile, keep your prices clear, and maintain strong ratings through quality service and good communication.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="sectionHead">
+        <h2>Contact</h2>
+        <p>Have questions or want to collaborate? Send a message and we will get back to you.</p>
+      </div>
+
+      <div class="split">
+        <div class="panel">
+          <h3>Contact details</h3>
+          <ul class="list">
+            <li>Email: <strong>support@easyfix.example</strong> (placeholder)</li>
+            <li>Phone: <strong>+20 000 000 0000</strong> (placeholder)</li>
+            <li>Hours: 9:00 AM to 6:00 PM</li>
+          </ul>
+
+          <div class="callout" style="margin-top:12px">
+            <div class="calloutIcon">📍</div>
+            <div>
+              <h3>Service coverage</h3>
+              <p>Start city-by-city, then expand based on demand and partner availability.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Contact form</h3>
+          <form class="form" id="contactForm">
+            <div class="row2">
+              <input class="input" name="name" placeholder="Your name" required />
+              <input class="input" name="email" placeholder="Your email" required />
+            </div>
+            <input class="input" name="subject" placeholder="Subject" required />
+            <textarea class="input" name="message" rows="5" placeholder="Write your message..." required></textarea>
+            <button class="btn btnPrimary" type="submit">Send message</button>
+            <div class="hint" id="contactFormMsg" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footerGrid">
+        <div>
+          <div class="brand" style="margin-bottom:8px">
+            <div class="logo">EF</div>
+            <div>
+              Easy Fix
+              <small>Fix your home بسهولة</small>
+            </div>
+          </div>
+          <div class="hint">
+            © <span id="year"></span> Easy Fix. All rights reserved.
+          </div>
+        </div>
+
+        <div class="footerLinks" aria-label="Footer links">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#safety">Safety</a>
+          <a href="#technicians">Technicians</a>
+          <a href="#companies">Companies</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking demo modal -->
+  <div class="modalOverlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Interactive booking demo">
+    <div class="modal">
+      <div class="modalTop">
+        <h3>Interactive booking demo</h3>
+        <button class="close" id="closeModal" type="button" aria-label="Close">×</button>
+      </div>
+
+      <div class="modalBody">
+        <p class="hint" style="margin-top:0">
+          This is a front-end demo to show the booking flow. Connect it to your backend later.
+        </p>
+
+        <form class="form" id="bookingForm">
+          <div class="row2">
+            <select class="input" name="service" id="serviceSelect" required>
+              <option value="">Select service</option>
+              <option value="Plumbing">Plumbing</option>
+              <option value="Electrical">Electrical</option>
+              <option value="Carpentry">Carpentry</option>
+              <option value="Cleaning">Cleaning</option>
+              <option value="Maintenance">Maintenance</option>
+            </select>
+
+            <select class="input" name="city" id="citySelect" required>
+              <option value="">Select city</option>
+              <option value="Cairo">Cairo</option>
+              <option value="Giza">Giza</option>
+              <option value="Alexandria">Alexandria</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="row2">
+            <select class="input" name="urgency" id="urgencySelect" required>
+              <option value="">Urgency</option>
+              <option value="Normal">Normal (within 48 hours)</option>
+              <option value="Same-day">Same-day</option>
+              <option value="Emergency">Emergency</option>
+            </select>
+
+            <select class="input" name="preferredTime" required>
+              <option value="">Preferred time</option>
+              <option>Morning</option>
+              <option>Afternoon</option>
+              <option>Evening</option>
+            </select>
+          </div>
+
+          <textarea class="input" name="details" rows="4" placeholder="Describe the issue (e.g., leaking sink, power outage, deep clean)..." required></textarea>
+
+          <label class="hint">
+            <input type="checkbox" id="womenOptionBooking" />
+            Women-for-women option (request female technician if available)
+          </label>
+
+          <button class="btn btnGreen" type="submit">Estimate price & confirm demo booking</button>
+
+          <div class="result" id="bookingResult">
+            <strong id="bookingTitle">Booking created (demo)</strong>
+            <span id="bookingText"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Helpers
+    const $ = (sel) => document.querySelector(sel);
+
+    // Mobile menu toggle
+    const hamburger = $("#hamburger");
+    const mobileMenu = $("#mobileMenu");
+    if (hamburger) {
+      hamburger.addEventListener("click", () => {
+        const open = mobileMenu.style.display === "block";
+        mobileMenu.style.display = open ? "none" : "block";
+      });
+    }
+    // Close mobile menu when clicking a link
+    mobileMenu?.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => mobileMenu.style.display = "none");
+    });
+
+    // Modal controls
+    const modalOverlay = $("#modalOverlay");
+    const openBookingTop = $("#openBookingTop");
+    const openBookingHero = $("#openBookingHero");
+    const closeModal = $("#closeModal");
+
+    function openModal(){
+      modalOverlay.style.display = "flex";
+      document.body.style.overflow = "hidden";
+      // focus first input for accessibility
+      setTimeout(() => $("#serviceSelect")?.focus(), 50);
+    }
+    function closeModalFn(){
+      modalOverlay.style.display = "none";
+      document.body.style.overflow = "";
+    }
+
+    openBookingTop?.addEventListener("click", openModal);
+    openBookingHero?.addEventListener("click", openModal);
+    closeModal?.addEventListener("click", closeModalFn);
+
+    modalOverlay?.addEventListener("click", (e) => {
+      if (e.target === modalOverlay) closeModalFn();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modalOverlay.style.display === "flex") closeModalFn();
+    });
+
+    // Demo forms (no backend)
+    function showMsg(el, msg, ok=true){
+      el.textContent = msg;
+      el.style.color = ok ? "#0f7a36" : "#b42318";
+    }
+
+    $("#techForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const msg = $("#techFormMsg");
+      showMsg(msg, "Application submitted (demo). Next step: connect to backend + verification workflow.");
+      e.target.reset();
+    });
+
+    $("#companyForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const msg = $("#companyFormMsg");
+      showMsg(msg, "Partnership request sent (demo). Next step: route to sales/partnership inbox.");
+      e.target.reset();
+    });
+
+    $("#contactForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const msg = $("#contactFormMsg");
+      showMsg(msg, "Message sent (demo). Next step: connect to email/CRM or ticket system.");
+      e.target.reset();
+    });
+
+    // Booking price estimate logic (demo)
+    const basePrices = {
+      "Plumbing": 250,
+      "Electrical": 300,
+      "Carpentry": 280,
+      "Cleaning": 220,
+      "Maintenance": 240
+    };
+    const urgencyMultiplier = {
+      "Normal": 1.0,
+      "Same-day": 1.25,
+      "Emergency": 1.6
+    };
+
+    $("#bookingForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const service = $("#serviceSelect").value;
+      const city = $("#citySelect").value;
+      const urgency = $("#urgencySelect").value;
+      const womenOpt = $("#womenOptionBooking").checked;
+
+      const base = basePrices[service] || 250;
+      const mult = urgencyMultiplier[urgency] || 1.0;
+
+      // simple city adjustment demo
+      const cityAdj = (city === "Other") ? 1.1 : 1.0;
+
+      const est = Math.round(base * mult * cityAdj);
+      const eta =
+        urgency === "Emergency" ? "ASAP (within hours)" :
+        urgency === "Same-day" ? "Today" :
+        "Within 48 hours";
+
+      const result = $("#bookingResult");
+      const title = $("#bookingTitle");
+      const text = $("#bookingText");
+
+      title.textContent = "Booking created (demo)";
+      text.textContent =
+        `Service: ${service} | City: ${city} | Urgency: ${urgency} | Estimated from: ${est} EGP | ETA: ${eta}` +
+        (womenOpt ? " | Women-for-women requested" : "");
+
+      result.style.display = "block";
+
+      // Keep modal open so user can see result, but reset after a moment
+      setTimeout(() => {
+        e.target.reset();
+      }, 400);
+    });
+
+    // Hero preview inputs (just cosmetic)
+    $("#quickSearch")?.addEventListener("input", () => {
+      // Could be expanded into a real filter for the preview cards if desired
+    });
+
+    // Footer year
+    $("#year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
